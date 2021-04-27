@@ -1,0 +1,61 @@
+
+
+version: '3.9'
+
+services: 
+    
+    splash:
+        image: scrapinghub/splash:3.5.0
+        ports:
+            - "8050:8050"
+        
+        container_name: splash
+
+        command: --disable-private-mode
+
+        volumes:
+            - ./data/filters:/etc/splash/filters
+            - ./data/js-profiles:/etc/splash/js-profiles
+            - ./data/lua_modules:/etc/splash/lua_modules
+            - ./data/proxy-profiles:/etc/splash/proxy-profiles
+        restart: unless-stopped
+
+
+
+    db:
+        image: postgres
+        env_file: .env 
+
+    scrapper:
+        build: 
+            context: .
+        env_file: .env
+        command: python tools/main.py https://www.booking.com/hotel/cl/ibis-budget-providencia.html
+
+        links:
+            - "splash"
+        depends_on: 
+            - db
+
+    web:
+        build: 
+            context: .
+
+        env_file: .env
+
+        volumes: 
+            - .:/code
+
+        environment: 
+            - DJANGO_SUPERUSER_EMAIL=admin@mail.com
+            - DJANGO_SUPERUSER_USERNAME=admin
+            - DJANGO_SUPERUSER_PASSWORD=admin
+
+        command: gunicorn booking_hotel_scraper.wsgi:application --bind 0.0.0.0:8000
+        
+        depends_on: 
+            - db
+            - splash
+        ports:
+            - "8000:8000"
+
