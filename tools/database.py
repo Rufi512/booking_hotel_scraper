@@ -28,5 +28,3 @@ metadata = db.MetaData()
 
 db_hotel = db.Table('scraper_hotel', metadata, autoload=True, autoload_with=engine)
 db_room = db.Table('scraper_room', metadata, autoload=True, autoload_with=engine)
-
-

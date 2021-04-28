@@ -1,6 +1,8 @@
 
 
 from database import *
+from typing import Dict,List
+
 from database import db_hotel, db_room
 from scraper import ScraperHotel,ScraperRooms
 from queue import Queue
@@ -40,9 +42,9 @@ def main(url:str):
     if res.status_code != 200:
         return f'Scraper no funcionando. {res.status_code}'
 
-    _hotel = session.query(db_hotel).filter_by(url_page=url)
+    _hotel = session.query(db_hotel).filter_by(url_page=url).first()
 
-    if _hotel == []:
+    if _hotel == None:
 
         query = db.insert(db_hotel).values(
             url_page = url,
@@ -55,9 +57,21 @@ def main(url:str):
         
         #connection.execute(query)
         session.execute(query)
-        session.commit()
 
-    _hotel = _hotel[0]
+    else:
+        query = db_hotel.update().where( db_hotel.c.url_page == url).values(
+            name = res.name,
+            direction = res.direction,
+            photos = res.photos,
+            score = res.score,
+            score_review =res.score_review,
+        )
+        session.execute(query)        
+    
+    session.commit()
+    _hotel = session.query(db_hotel).filter_by(url_page=url).first()
+
+
     threads:List = [] 
     que = Queue()
 
@@ -79,17 +93,24 @@ def main(url:str):
 
     for i in threads:
         i.join()
-        data = que.get()
+        data:Dict = que.get()
             
         #comprobar de que la habitacion no exista
-        _room = session.query(db_room).filter_by(room_code=room[1]).first()
+        code:str = data['room_code']
+        _room = session.query(db_room).filter_by(room_code=code).first()
 
-        if _room is not True :
+        if _room == None:
             query = db.insert(db_room).values(**data) 
             session.execute(query)
         else:
-            _room.update(**data)
-            logging.info("ya existe la habitacion")
+            query = db_room.update().where( db_room.c.room_code == code).values(
+                name = data['name'],
+                facilities = data['facilities'],
+                photos = data['photos'],
+                size = data['size']
+            )
+            session.execute(query)
+            logging.info("Update row")
     
     session.commit()
 
