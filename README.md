@@ -27,6 +27,12 @@ por ultimo corre docker
 
 ```bash
   docker-compose run web python tools/main.py www.booking.com/?
-``
+```
+
+## Para desmotar la imagen usa el comando
+
+```bash
+  docker-compose down
+```
 
 
