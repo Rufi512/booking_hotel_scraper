@@ -1,0 +1,97 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/icon?family=Material+Icons"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+		<title>Document</title>
+	</head>
+	<body>
+		<div class="container">
+			<div class="hotel-container">
+				<h2>Información del hotel</h2>
+				<!-- Cabecera de la consulta del hotel -->
+				<div class="hotel-header-container">
+					<div class="content">
+						<div>
+							<span style="font-weight: 600">Nombre del Hotel</span>
+							<p id="hotel-name"></p>
+						</div>
+
+						<div>
+							<span style="font-weight: 600">Dirección del hotel</span>
+							<div>
+								<p id="hotel-location"></p>
+							</div>
+						</div>
+					</div>
+					<div class="reviews-users">
+						<div class="stars">
+							<p style="font-weight: 600">
+								Calificación del hotel según usuarios
+							</p>
+							<div>
+								<p id="hotel-stars"></p>
+								<span class="material-icons" style="color: #efd91d">star</span>
+							</div>
+						</div>
+
+						<div class="reviews">
+							<p style="font-weight: 600">Review totales de usuarios</p>
+							<div>
+								<p id="hotel-reviews"></p>
+								<span class="material-icons">rate_review</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Cuerpo de la consulta del hotel -->
+				<div class="hotel-body-container">
+					<div class="hotel-images">
+						<h3>Imagenes del hotel</h3>
+						<div id="hotel-images"></div>
+					</div>
+					<!-- Cuerpo de la consulta del habitaciones del hotel -->
+					<div class="hotel-rooms">
+						<h3>Habitaciones</h3>
+						<ul id="hotel-rooms"></ul>
+					</div>
+
+					<!-- Fin del cuerpo de la consulta del hotel -->
+				</div>
+
+				<a href="/" id="hotel-link">Ir a la Pagina del hotel</a>
+			</div>
+		</div>
+		<!--Fin del hotel-->
+
+		<div class="container error" id="cheems" style="display: none">
+			<h1>Vaya... esto es malo</h1>
+			<h2>Algo sal malio mar</h2>
+			<p>
+				Tenemos problema en mostrar la información,disculpa las molestias
+				causadas
+			</p>
+			<div>
+				<img src="static/images/img2.jpeg" />
+				<img src="static/images/img.jpg" />
+			</div>
+
+			<p>Pero hey! todo tiene solución,intenta recargar la pagina</p>
+			<button id="reload">Recargar</button>
+		</div>
+
+		<script src="{% static 'js/script.js' %}"></script>
+	</body>
+</html>

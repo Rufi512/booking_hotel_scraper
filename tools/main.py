@@ -1,7 +1,8 @@
 
 
 from database import *
-from typing import Dict,List
+from typing import Dict, List, Tuple
+
 
 from database import db_hotel, db_room
 from scraper import ScraperHotel,ScraperRooms
@@ -45,7 +46,6 @@ def main(url:str):
     _hotel = session.query(db_hotel).filter_by(url_page=url).first()
 
     if _hotel == None:
-
         query = db.insert(db_hotel).values(
             url_page = url,
             name = res.name,
@@ -54,7 +54,6 @@ def main(url:str):
             score = res.score,
             score_review =res.score_review,
         ) 
-        
         #connection.execute(query)
         session.execute(query)
 
@@ -76,7 +75,7 @@ def main(url:str):
     que = Queue()
 
     for num in range(len(res.rooms)):
-        room = res.rooms[num]
+        room: Tuple[str,str] = res.rooms[num]
 
         
         _thread = threading.Thread(name='thread%s' %num, 
@@ -102,6 +101,7 @@ def main(url:str):
         if _room == None:
             query = db.insert(db_room).values(**data) 
             session.execute(query)
+        
         else:
             query = db_room.update().where( db_room.c.room_code == code).values(
                 name = data['name'],

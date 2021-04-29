@@ -30,7 +30,7 @@ services:
         build: 
             context: .
         env_file: .env
-        command: python tools/main.py https://www.booking.com/hotel/cl/ibis-budget-providencia.html
+        command: bash -c "python manage.py migrate && python tools/main.py https://www.booking.com/hotel/cl/ibis-budget-providencia.html"
 
         links:
             - "splash"
@@ -56,6 +56,7 @@ services:
         depends_on: 
             - db
             - splash
+            
         ports:
             - "8000:8000"
 
