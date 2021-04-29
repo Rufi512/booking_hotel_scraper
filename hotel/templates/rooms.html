@@ -1,0 +1,53 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<link rel="preconnect" href="https://fonts.gstatic.com" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/icon?family=Material+Icons"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
+		<title>Document</title>
+	</head>
+	<body>
+		<div class="container" data-hotel_id="{{hotel}}">
+			<h2>Habitaciones disponibles</h2>
+
+			<div class="rooms-container" id="rooms-container"></div>
+		</div>
+
+		<div class="container error" id="cheems" style="display: none">
+			<h1>Vaya... esto es malo</h1>
+			<h2>Algo sal malio mar</h2>
+			<p>
+				Tenemos problema en mostrar la información,disculpa las
+				molestias causadas
+			</p>
+			<div class="error-images">
+				<img src="{% static 'images/img2.jpeg' %}" />
+				<img src="{% static 'images/img.jpg' %}" />
+			</div>
+
+			<p>
+				Pero hey! todo tiene solución,intenta recargar la pagina o
+				vuelve al indice
+			</p>
+			<div style="flex-flow: wrap">
+				<button style="margin: 10px 0" id="reload">Recargar</button>
+				<button style="margin: 10px 0" id="reload-index">Volver</button>
+			</div>
+		</div>
+
+		<script src="{% static 'js/rooms.js' %}"></script>
+	</body>
+</html>

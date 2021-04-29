@@ -18,6 +18,11 @@
 		<title>Document</title>
 	</head>
 	<body>
+		<!-- Loader -->
+		<div class="loader">
+			<h2 id="loader-text">Cargando</h2>
+		</div>
+
 		<div class="container">
 			<div class="hotel-container">
 				<h2>Información del hotel</h2>
@@ -25,12 +30,16 @@
 				<div class="hotel-header-container">
 					<div class="content">
 						<div>
-							<span style="font-weight: 600">Nombre del Hotel</span>
+							<span style="font-weight: 600"
+								>Nombre del Hotel</span
+							>
 							<p id="hotel-name"></p>
 						</div>
 
 						<div>
-							<span style="font-weight: 600">Dirección del hotel</span>
+							<span style="font-weight: 600"
+								>Dirección del hotel</span
+							>
 							<div>
 								<p id="hotel-location"></p>
 							</div>
@@ -43,12 +52,18 @@
 							</p>
 							<div>
 								<p id="hotel-stars"></p>
-								<span class="material-icons" style="color: #efd91d">star</span>
+								<span
+									class="material-icons"
+									style="color: #efd91d"
+									>star</span
+								>
 							</div>
 						</div>
 
 						<div class="reviews">
-							<p style="font-weight: 600">Review totales de usuarios</p>
+							<p style="font-weight: 600">
+								Review totales de usuarios
+							</p>
 							<div>
 								<p id="hotel-reviews"></p>
 								<span class="material-icons">rate_review</span>
@@ -66,26 +81,49 @@
 					<div class="hotel-rooms">
 						<h3>Habitaciones</h3>
 						<ul id="hotel-rooms"></ul>
+						<a href="/" id="hotel-rooms-link"
+							>Ver detalles de habitaciones</a
+						>
 					</div>
 
 					<!-- Fin del cuerpo de la consulta del hotel -->
 				</div>
 
 				<a href="/" id="hotel-link">Ir a la Pagina del hotel</a>
+
+				<div class="hotel-search">
+					<h4>Buscas otro hotel?</h4>
+					<form id="container-form">
+						<input
+							autocomplete="off"
+							type="text"
+							name="url_hotel"
+							placeholder="Url del hotel"
+						/>
+						<button
+							style="cursor: pointer"
+							type="submit"
+							id="submit"
+						>
+							Consultar
+						</button>
+					</form>
+				</div>
 			</div>
 		</div>
+
 		<!--Fin del hotel-->
 
 		<div class="container error" id="cheems" style="display: none">
 			<h1>Vaya... esto es malo</h1>
 			<h2>Algo sal malio mar</h2>
 			<p>
-				Tenemos problema en mostrar la información,disculpa las molestias
-				causadas
+				Tenemos problema en mostrar la información,disculpa las
+				molestias causadas
 			</p>
 			<div>
-				<img src="static/images/img2.jpeg" />
-				<img src="static/images/img.jpg" />
+				<img src="{% static 'images/img2.jpeg' %}" />
+				<img src="{% static 'images/img.jpg' %}" />
 			</div>
 
 			<p>Pero hey! todo tiene solución,intenta recargar la pagina</p>
