@@ -26,7 +26,7 @@ por ultimo corre docker
 ## hacer scraping a otra pagina de booking
 
 ```bash
-  docker-compose run web python tools/main.py www.booking.com/?
+  docker-compose run web python tools/main.py https://www.booking.com/hotel/do/aladino-aparta.es.html
 ```
 
 ## Para desmotar la imagen usa el comando
