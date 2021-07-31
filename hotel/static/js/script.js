@@ -1,5 +1,8 @@
 const hotelContainer = document.querySelector(".container");
 const hotelName = document.getElementById("hotel-name");
+const hotelUrl = document.getElementById("hotel-url");
+
+
 const hotelLocation = document.getElementById("hotel-location");
 const hotelStars = document.getElementById("hotel-stars");
 const hotelImages = document.getElementById("hotel-images");
@@ -21,6 +24,8 @@ const showHotel = (data) => {
     hotelReviews.innerHTML = data.score_review;
     hotelLink.href = data.url_page;
     hotelRoomsLink.href = "/rooms/" + data.id;
+    //hotelUrl.innerHTML = `<a href="${data.url_page}"> Link </a>` 
+
     data.photos.map((el, i) => {
         hotelImages.innerHTML += `<img src=${el} alt=${i}/>`;
     });

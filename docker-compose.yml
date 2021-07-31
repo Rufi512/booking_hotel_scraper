@@ -4,6 +4,14 @@ version: '3.9'
 
 services: 
     
+
+
+
+    db:
+        image: postgres
+        env_file: .env 
+
+
     splash:
         image: scrapinghub/splash:3.5.0
         ports:
@@ -20,23 +28,20 @@ services:
             - ./data/proxy-profiles:/etc/splash/proxy-profiles
         restart: unless-stopped
 
-
-
-    db:
-        image: postgres
-        env_file: .env 
-
-    scrapper:
-        build: 
-            context: .
-        env_file: .env
-        command: bash -c "python manage.py migrate && python tools/main.py https://www.booking.com/hotel/cl/ibis-budget-providencia.html"
-
-        links:
-            - "splash"
         depends_on: 
             - db
-            - splash
+
+
+    #scrapper:
+    #    build: 
+    #        context: .
+    #    env_file: .env
+    #    command: bash -c "python manage.py makemigrations && python manage.py migrate && python tools/main.py https://www.booking.com/hotel/cl/ibis-budget-providencia.es.html"
+
+    #    depends_on: 
+    #        - splash
+    #    links:
+    #        - "splash"
 
     web:
         build: 
@@ -56,6 +61,7 @@ services:
         
         depends_on: 
             - db
+            - splash
             
         ports:
             - "8000:8000"
