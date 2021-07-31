@@ -30,6 +30,19 @@ services:
             - db
 
 
+    scrapper:
+        build: 
+            context: .
+        env_file: .env
+        command: bash -c "python manage.py makemigrations && python manage.py migrate"
+
+        depends_on: 
+            - db
+            - splash
+
+        links:
+            - "splash"
+
     web:
         build: 
             context: .
@@ -49,6 +62,7 @@ services:
         depends_on: 
             - db
             - splash
+            - scrapper
             
         ports:
             - "8000:8000"

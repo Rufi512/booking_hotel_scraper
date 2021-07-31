@@ -11,8 +11,6 @@ import threading
 from scraper import scrapperHandler
 
 
-
-
 def main(url:str):
     hotel = scrapperHandler.BookingScrapperHandler(url)
 
