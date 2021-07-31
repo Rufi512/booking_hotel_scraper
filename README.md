@@ -9,11 +9,11 @@ Compila primero todo los servicios
   docker-compose build
 ```
 
-luego ejecuta las migraciones de django:
+luego ejecuta y crea las migraciones de django:
 
 
 ```bash
-  docker-compose run web python manage.py migrate
+  docker-compose run web bash -c "python manage.py makemigrations && python manage.py migrate"
 ```
 
 por ultimo corre docker
@@ -26,7 +26,7 @@ por ultimo corre docker
 ## hacer scraping a otra pagina de booking
 
 ```bash
-  docker-compose run web python tools/main.py www.booking.com/?
+  docker-compose run web python tools/main.py https://www.booking.com/hotel/cl/ibis-budget-providencia.es.html
 ```
 
 ## Para desmotar la imagen usa el comando
