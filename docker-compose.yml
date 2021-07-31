@@ -3,8 +3,6 @@
 version: '3.9'
 
 services: 
-    
-
 
 
     db:
@@ -31,17 +29,6 @@ services:
         depends_on: 
             - db
 
-
-    #scrapper:
-    #    build: 
-    #        context: .
-    #    env_file: .env
-    #    command: bash -c "python manage.py makemigrations && python manage.py migrate && python tools/main.py https://www.booking.com/hotel/cl/ibis-budget-providencia.es.html"
-
-    #    depends_on: 
-    #        - splash
-    #    links:
-    #        - "splash"
 
     web:
         build: 
