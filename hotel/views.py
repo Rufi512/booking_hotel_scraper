@@ -5,9 +5,13 @@ from rest_framework import status
 from .models import Hotel, Room, ReviewHotel, Commentary
 from .serializers import RoomSerializer, HotelSerializer, ReviewSerializers, CommentSerializers
 
+
+
 import sys
 sys.path.append('..')
-from tools.scraper.spyder import ScraperHotel,ScraperRooms
+
+from tools.scraper import scrapperHandler
+
 
 # Create your views here.
 class RoomView(APIView):

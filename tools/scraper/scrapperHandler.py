@@ -11,8 +11,12 @@ import concurrent.futures
 from queue import Queue
 from typing import Dict, List, Tuple
 
-from scraper import database
-from scraper import spyder 
+try:
+	from scraper import database
+	from scraper import spyder 
+except:
+	from tools.scraper import database
+	from tools.scraper import spyder
 
 
 from concurrent.futures import ThreadPoolExecutor
