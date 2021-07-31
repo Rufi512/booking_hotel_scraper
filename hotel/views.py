@@ -6,13 +6,12 @@ from .models import Hotel, Room, ReviewHotel, Commentary
 from .serializers import RoomSerializer, HotelSerializer, ReviewSerializers, CommentSerializers
 
 
-
+"""
 import sys
 sys.path.append('..')
-
 from tools.scraper import scrapperHandler
-
-
+"""
+	
 # Create your views here.
 class RoomView(APIView):
 
@@ -46,21 +45,27 @@ class HotelView(APIView):
 		response = HotelSerializer(instance=_hotel,many=True)
 		return Response(response.data, status = status.HTTP_201_CREATED)
 	
+
+
 	def post(self, request):
 		url = request.data['url']
+		try:
+			hotel = scrapperHandler.BookingScrapperHandler(url)
+			hotel_id,response_rooms = hotel._scrapper_hotel()
 
-		hotel = scrapperHandler.BookingScrapperHandler(url)
-		hotel_id,response_rooms = hotel._scrapper_hotel()
-
-		hotel._room_save(url=url, hotel_id=hotel_id, response_rooms=response_rooms)
-		hotel._review_save(url=url,hotel_id=hotel_id)
+			hotel._room_save(url=url, hotel_id=hotel_id, response_rooms=response_rooms)
+			hotel._review_save(url=url,hotel_id=hotel_id)
 
 
-		__hotel = Hotel.objects.get(url_page=url)
-		response = HotelSerializer(instance=__hotel)
+			__hotel = Hotel.objects.get(url_page=url)
+			response = HotelSerializer(instance=__hotel)
 
-		return Response(response.data, status = status.HTTP_201_CREATED)
-	
+			return Response(response.data, status = status.HTTP_201_CREATED)
+
+
+		except:
+			return Response({"message":'model not created'})
+
 
 class CommentView(APIView):
 

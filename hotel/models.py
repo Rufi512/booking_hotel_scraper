@@ -92,8 +92,8 @@ class Commentary(models.Model):
     country_img = models.CharField(max_length=255)
 
     
-    positive_message = models.CharField(max_length=255)
-    negative_message = models.CharField(max_length=255)
+    positive_message = models.CharField(max_length=1000)
+    negative_message = models.CharField(max_length=1000)
 
     
     created_at = models.DateTimeField(auto_now_add=True,null=True)
