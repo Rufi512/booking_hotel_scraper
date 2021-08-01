@@ -15,8 +15,6 @@ try:
 	from scraper import database
 	from scraper import spyder 
 except:
-	import sys 
-	print(sys.path)
 	from tools.scraper import database
 	from tools.scraper import spyder
 
