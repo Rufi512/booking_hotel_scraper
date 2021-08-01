@@ -4,6 +4,7 @@ from rest_framework import status
 
 from .models import Hotel, Room, ReviewHotel, Commentary
 from .serializers import RoomSerializer, HotelSerializer, ReviewSerializers, CommentSerializers
+import logging
 
 try:
 	import sys

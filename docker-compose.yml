@@ -7,6 +7,7 @@ services:
         env_file: .env 
 
 
+
     splash:
         image: scrapinghub/splash:3.5.0
         ports:
@@ -49,3 +50,6 @@ services:
             
         ports:
             - "8000:8000"
+
+        links:
+            - db:db
