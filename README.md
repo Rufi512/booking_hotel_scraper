@@ -16,17 +16,17 @@ luego ejecuta y crea las migraciones de django:
   docker-compose run web bash -c "python manage.py makemigrations && python manage.py migrate"
 ```
 
-por ultimo corre docker
+#### hacer scraping a otra pagina de booking
+
+```bash
+  docker-compose run web python tools/main.py https://www.booking.com/hotel/cl/ibis-budget-providencia.es.html
+```
+
+por ultimo corre la db y gunicorn
 
 
 ```bash
   docker-compose up
-```
-
-## hacer scraping a otra pagina de booking
-
-```bash
-  docker-compose run web python tools/main.py https://www.booking.com/hotel/cl/ibis-budget-providencia.es.html
 ```
 
 ## Para desmotar la imagen usa el comando
