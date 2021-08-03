@@ -173,8 +173,9 @@ class ReviewHotel(ScraperHandler):
 			'categories':self.categories,
 		}
 
+
 class ScraperHotel(ScraperHandler):
-	def __init__(self, url:str,proxy:bool = True):
+	def __init__(self, url:str,proxy:bool = False):
 		super().__init__(url,proxy)
 
 		self._name:str = ""

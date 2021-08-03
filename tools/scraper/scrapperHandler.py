@@ -131,6 +131,10 @@ class BookingScrapperHandler:
 				_room = database.session.query(database.db_room).filter_by(room_code=code)
 
 				if _room.first():
+					logging.debug('fotos')
+					logging.debug(data.get('photos'))
+
+
 					logging.info("UPDATE ROOM INIT")
 					_room.update({
 						'name': data.get('name'),
@@ -139,16 +143,18 @@ class BookingScrapperHandler:
 						'size': data.get('size')
 					})
 
+					database.session.commit()
 					logging.info("UPDATE ROOM END")
 				
 				else:
 					logging.info("CREATE ROOM INIT")
 					query = database.db.insert(database.db_room).values(**data) 
 					database.session.execute(query)
+					database.session.commit()
 					logging.info("CREATE ROOM END")
 
 		
-		database.session.commit()
+		
 
 
 	def _model_to_dict(self,res_review,hotel_id) -> Dict:
