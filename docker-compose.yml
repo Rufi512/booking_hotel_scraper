@@ -2,9 +2,7 @@ version: '3.9'
 
 services: 
 
-    db:
-        image: postgres
-        env_file: .env 
+
 
 
 
@@ -53,3 +51,22 @@ services:
 
         links:
             - db:db
+
+
+
+    db:
+        image: postgres
+
+        #volumes:
+        #    - postgres_data:/var/lib/postgresql/data/
+
+        environment:
+          - POSTGRES_USER=hug58
+          - POSTGRES_PASSWORD=123456
+          - POSTGRES_DB=bookingDB
+
+
+
+
+#volumes:
+#  postgres_data:
