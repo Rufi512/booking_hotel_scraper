@@ -60,11 +60,12 @@ services:
         #volumes:
         #    - postgres_data:/var/lib/postgresql/data/
 
-        environment:
-          - POSTGRES_USER=hug58
-          - POSTGRES_PASSWORD=123456
-          - POSTGRES_DB=bookingDB
+        #environment:
+        #  - POSTGRES_USER=hug58
+        #  - POSTGRES_PASSWORD=123456
+        #  - POSTGRES_DB=bookingDB
 
+        env_file: .env
 
 
 

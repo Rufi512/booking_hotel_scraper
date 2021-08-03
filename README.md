@@ -11,11 +11,6 @@ Compila primero todo los servicios
 
 luego ejecuta y crea las migraciones de django:
 
-
-#```bash
-#docker-compose run web bash -c "python manage.py #makemigrations && python manage.py migrate" --noinput
-#```
-
 ```bash
   docker-compose exec web python manage.py makemigrations 
 
@@ -36,7 +31,7 @@ luego ejecuta y crea las migraciones de django:
 #### hacer scraping a otra pagina de booking
 
 ```bash
-    docker-compose run web python tools/main.py https://www.booking.com/hotel/cl/ibis-budget-providencia.es.html
+    docker-compose exec web python tools/main.py https://www.booking.com/hotel/cl/ibis-budget-providencia.es.html
 ```
 
 por ultimo corre la db y gunicorn
